@@ -1,0 +1,30 @@
+{
+  "name": "node_demo",
+  "version": "1.0.0",
+  "description": "demo koa",
+  "main": "index.js",
+  "author": "pan",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development nodemon koaServer.js",
+    "build": "cross-env NODE_ENV=production node koaServer.js"
+  },
+  "dependencies": {
+    "@koa/cors": "2",
+    "koa": "^2.4.1",
+    "koa-bodyparser": "^4.2.0",
+    "koa-compress": "^2.0.0",
+    "koa-conditional-get": "^2.0.0",
+    "koa-etag": "^3.0.0",
+    "koa-logger": "^3.1.0",
+    "koa-router": "^7.3.0",
+    "koa-session": "^5.5.1",
+    "koa-static": "^4.0.2",
+    "mongoose": "^4.13.7"
+  },
+  "devDependencies": {
+    "cross-env": "^5.1.1",
+    "nodemon": "^1.12.5"
+  }
+}
