@@ -1,52 +1,3 @@
-// class Tree {
-//   constructor() {
-//     this.root = null;
-//     this.Node = function (elem) {
-//       this.elem = elem;
-//       this.left = null;
-//       this.right = null;
-//     }
-//   }
-
-//   insert(elem) {
-//     if (!this.root) {
-//       this.root = new this.Node(elem);
-//       return;
-//     }
-//     this.insertNode(this.root, elem);
-//   }
-
-//   insertNode(node, elem) {
-//     if (elem < node.elem) {
-//       if (!node.left) {
-//         node.left = new this.Node(elem);
-//         return;
-//       }
-//       return this.insertNode(node.left, elem);
-//     } else {
-//       if (!node.right) {
-//         node.right = new this.Node(elem);
-//         return;
-//       }
-//       return this.insertNode(node.right, elem);
-//     }
-//   }
-// }
-
-// function loop(array) {
-//   const {
-//     length
-//   } = array;
-//   for (let i = 0; i < length; i++) {
-//     for (let y = 0; y < length - 1; y++) {
-//       if (array[y] > array[y + 1]) {
-//         [array[y], array[y + 1]] = [array[y + 1], array[y]]
-//       }
-//     }
-//   }
-//   return array;
-// }
-
 // 冒泡
 function loop(array) {
   const a = [...array];
@@ -60,11 +11,70 @@ function loop(array) {
   }
 }
 
-//快速
-function quick() {}
-
 //选择
-function choose() {}
+function choose(array) {
+  const a = [...array];
+  const { length } = a;
+  for (let i = 0; i < length - 1; i++) {
+    let min = i;
+    for (let y = i + 1; y < length; y++) {
+      if (a[min] > a[y]) {
+        min = y;
+      }
+    }
+    [a[min], a[i]] = [a[i], a[min]];
+  }
+  return a;
+}
+
+// 插入
+function insert(array) {
+  const a = [...array];
+  const { length } = a;
+  for (let i = 1; i < length; i++) {
+    let j = i;
+    let min = a[i];
+    while (j > 0 && a[j - 1] > min) {
+      a[j] = a[j - 1];
+      j--;
+    }
+    a[i] = min;
+  }
+}
+
+// 归并
+function mergeSort(array) {
+  const a = [...array];
+  const { length } = a;
+  if (length <= 1) {
+    return a;
+  }
+  const mid = ~~(length / 2);
+  const left = a.slice(0, mid);
+  const right = a.slice(mid);
+  return merge(mergeSort(left), mergeSort(right));
+}
+
+function merge(left, right) {
+  const result = [];
+  let il = 0;
+  let ir = 0;
+
+  while (il < left.length && ir < right.length) {
+    if (left[il] < right[ir]) {
+      result.push(left[il++]);
+    } else {
+      result.push(right[ir++]);
+    }
+  }
+  while (il < left.length) {
+    result.push(left[il++]);
+  }
+  while (ir < right.length) {
+    result.push(right[ir++]);
+  }
+  return result;
+}
 
 //二叉树
 function Node(elem) {

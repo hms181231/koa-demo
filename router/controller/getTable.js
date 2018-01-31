@@ -4,7 +4,7 @@ module.exports = async ctx => {
   const { query } = ctx.request;
   let data = [];
   if (query.name) {
-    data = await GetTable.find(query);
+    data = await GetTable.find({ name: new RegExp(query.name, 'i') });
   } else {
     data = await GetTable.find({});
   }
